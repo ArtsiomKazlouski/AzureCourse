@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using BookStore.Models.Pagination;
@@ -34,7 +35,9 @@ namespace BookStore.Controllers
         {
             IList<Phone> phones = new List<Phone>();
 
-            foreach (var file in Directory.GetFiles(Environment.CurrentDirectory))
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            foreach (var file in Directory.GetFiles(path))
             {
                 phones.Add(new Phone(){Model = file });
             }
