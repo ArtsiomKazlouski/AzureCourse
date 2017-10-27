@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -12,11 +13,21 @@ using BookStore.Models;
 
 namespace BookStore
 {
-	public class MvcApplication : System.Web.HttpApplication
+    public class MyConfiguration : DbConfiguration
+    {
+        public MyConfiguration()
+        {
+            SetDefaultConnectionFactory(new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0"));
+        }
+    }
+
+    public class MvcApplication : System.Web.HttpApplication
 	{
 		protected void Application_Start()
 		{
-			Database.SetInitializer(new BookDbInitializer());
+            
+
+            Database.SetInitializer(new BookDbInitializer());
 			Database.SetInitializer(new CourseDbInitializer());
 
 			AreaRegistration.RegisterAllAreas();
