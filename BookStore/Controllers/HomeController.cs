@@ -22,10 +22,21 @@ namespace BookStore.Controllers
         [HttpGet]
         public ActionResult Buy(int id)
         {
-            ViewBag.BookId = id;
+            var bookForPurchase = db.Books.FirstOrDefault(t => t.Id == id);
+
+            if(bookForPurchase == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var purchase = new Purchase()
+            {
+                BookId = bookForPurchase.Id,
+                Book = bookForPurchase                
+            };            
             ViewBag.Message = "Это вызов частичного представления из обычного";
-            SelectList books = new SelectList(db.Books, "Author", "Name");
-            return View(books);
+            
+            return View(purchase);
         }
 
         [HttpGet]

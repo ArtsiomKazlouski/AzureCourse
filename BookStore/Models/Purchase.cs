@@ -18,6 +18,6 @@ namespace BookStore.Models
         // дата покупки
         public DateTime Date { get; set; }
 
-
+        public Book Book { get; set; }
     }
 }
