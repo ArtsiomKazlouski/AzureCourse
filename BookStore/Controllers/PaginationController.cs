@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
 using BookStore.Models.Pagination;
 
@@ -33,19 +29,6 @@ namespace BookStore.Controllers
         // GET: Pagination
         public ActionResult Index(int page = 1)
         {
-            IList<Phone> phones = new List<Phone>();
-
-            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            foreach (var file in Directory.GetFiles(path))
-            {
-                phones.Add(new Phone(){Model = file });
-            }
-            IndexViewModel ivm2 = new IndexViewModel { PageInfo = new PageInfo { PageNumber = page, PageSize = 3, TotalItems = phones.Count }, Phones = phones };
-            return View(ivm2);
-
-
-
             int pageSize = 3; // количество объектов на страницу
             IEnumerable<Phone> phonesPerPages = phones.Skip((page - 1) * pageSize).Take(pageSize);
             PageInfo pageInfo = new PageInfo {PageNumber = page, PageSize = pageSize, TotalItems = phones.Count};
