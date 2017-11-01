@@ -13,20 +13,10 @@ using BookStore.Models;
 
 namespace BookStore
 {
-    public class MyConfiguration : DbConfiguration
-    {
-        public MyConfiguration()
-        {
-            SetDefaultConnectionFactory(new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0"));
-        }
-    }
-
     public class MvcApplication : System.Web.HttpApplication
 	{
 		protected void Application_Start()
 		{
-            
-
             Database.SetInitializer(new BookDbInitializer());
 			Database.SetInitializer(new CourseDbInitializer());
 
