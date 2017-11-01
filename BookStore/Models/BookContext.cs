@@ -6,7 +6,6 @@ using System.Web;
 
 namespace BookStore.Models
 {
-    [DbConfigurationType(typeof(MyConfiguration))]
     public class BookContext : DbContext
     {
         public DbSet<Book> Books { get; set; }
