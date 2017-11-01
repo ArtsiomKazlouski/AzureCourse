@@ -71,7 +71,4 @@
     <Build Include="dbo\Tables\CourseStudent.sql" />
     <Build Include="dbo\Tables\Courses.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <PostDeploy Include="SeedData.PostDeployment.sql" />
-  </ItemGroup>
 </Project>

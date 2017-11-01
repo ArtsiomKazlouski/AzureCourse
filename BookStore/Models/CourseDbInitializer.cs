@@ -6,9 +6,9 @@ using System.Web;
 
 namespace BookStore.Models
 {
-    public class CourseDbInitializer : DropCreateDatabaseAlways<StudentsContext>
+    public class CourseDbInitializer : IDatabaseInitializer<StudentsContext>
     {
-        protected override void Seed(StudentsContext context)
+        public void InitializeDatabase(StudentsContext context)
         {
             Student s1 = new Student { Id = 1, Name = "Егор", Surname = "Иванов" };
             Student s2 = new Student { Id = 2, Name = "Мария", Surname = "Васильева" };
@@ -43,7 +43,8 @@ namespace BookStore.Models
             context.Courses.Add(c2);
             context.Courses.Add(c3);
 
-            base.Seed(context);
+            context.SaveChanges();
         }
+        
     }
 }
