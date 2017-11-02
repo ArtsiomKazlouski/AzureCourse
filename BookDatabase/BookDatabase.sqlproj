@@ -70,5 +70,12 @@
     <Build Include="dbo\Tables\Students.sql" />
     <Build Include="dbo\Tables\CourseStudent.sql" />
     <Build Include="dbo\Tables\Courses.sql" />
+    <Build Include="dbo\Tables\DatabaseVersion.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="SeedData.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Script.PreDeployment.sql" />
   </ItemGroup>
 </Project>
