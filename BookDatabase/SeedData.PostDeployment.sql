@@ -10,9 +10,7 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-IF @Version = 0
-BEGIN
-  SET IDENTITY_INSERT [dbo].[Books] ON 
+SET IDENTITY_INSERT [dbo].[Books] ON 
 
 INSERT [dbo].[Books] ([Id], [Name], [Author], [Price]) VALUES (1, N'Война и мир', N'Л. Толстой', 220)
 
@@ -91,10 +89,4 @@ INSERT [dbo].[CourseStudent] ([CourseId], [StudentId]) VALUES (2, 4)
 
 INSERT [dbo].[CourseStudent] ([CourseId], [StudentId]) VALUES (3, 4)
 
-INSERT [dbo].[DataDatabaseVersion]([Version]) VALUES (1)
-END
-
-
-
-
-
+INSERT [dbo].[DatabaseVersion]([Version]) VALUES (1)

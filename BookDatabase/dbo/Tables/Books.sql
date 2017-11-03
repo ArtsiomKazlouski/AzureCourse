@@ -3,6 +3,7 @@
     [Name]   NVARCHAR (MAX) NULL,
     [Author] NVARCHAR (MAX) NULL,
     [Price]  INT            NOT NULL,
+    [PublishingYear] NVARCHAR(MAX) NULL, 
     CONSTRAINT [PK_dbo.Books] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 

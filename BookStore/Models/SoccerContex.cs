@@ -8,6 +8,11 @@ namespace BookStore.Models
 {
     public class SoccerContex : DbContext
     {
+        public SoccerContex():base("SqlDatabaseConnection")
+        {
+            
+        }
+
         public DbSet<Player> Players { get; set; }
         public DbSet<Team> Teams { get; set; }
     }
