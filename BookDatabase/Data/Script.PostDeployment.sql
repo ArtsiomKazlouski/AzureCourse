@@ -1,21 +1,13 @@
 ﻿/*
- Pre-Deployment Script Template							
+Post-Deployment Script Template							
 --------------------------------------------------------------------------------------
- This file contains SQL statements that will be executed before the build script.	
- Use SQLCMD syntax to include a file in the pre-deployment script.			
+ This file contains SQL statements that will be appended to the build script.		
+ Use SQLCMD syntax to include a file in the post-deployment script.			
  Example:      :r .\myfile.sql								
- Use SQLCMD syntax to reference a variable in the pre-deployment script.		
+ Use SQLCMD syntax to reference a variable in the post-deployment script.		
  Example:      :setvar TableName MyTable							
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-
 :r .\Common\GetVersion.sql
-:r .\PrePartialScripts\0.sql
-
-
-
-
---:setvar Version @Version
-
-
+:r .\PostPartialScript\0.sql

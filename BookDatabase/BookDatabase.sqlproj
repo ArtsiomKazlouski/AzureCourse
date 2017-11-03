@@ -62,6 +62,9 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="Data" />
+    <Folder Include="Data\PrePartialScripts" />
+    <Folder Include="Data\PostPartialScript" />
+    <Folder Include="Data\Common" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Teams.sql" />
@@ -72,14 +75,16 @@
     <Build Include="dbo\Tables\CourseStudent.sql" />
     <Build Include="dbo\Tables\Courses.sql" />
     <Build Include="dbo\Tables\DatabaseVersion.sql" />
+    <None Include="Data\PrePartialScripts\0.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="SeedData.PostDeployment.sql" />
+    <PostDeploy Include="Data\Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Data\Script.PreDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\F0.sql" />
+    <None Include="Data\Common\GetVersion.sql" />
+    <None Include="Data\PostPartialScript\0.sql" />
   </ItemGroup>
 </Project>

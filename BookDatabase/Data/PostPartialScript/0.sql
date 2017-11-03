@@ -1,15 +1,5 @@
-﻿/*
-Post-Deployment Script Template							
---------------------------------------------------------------------------------------
- This file contains SQL statements that will be appended to the build script.		
- Use SQLCMD syntax to include a file in the post-deployment script.			
- Example:      :r .\myfile.sql								
- Use SQLCMD syntax to reference a variable in the post-deployment script.		
- Example:      :setvar TableName MyTable							
-               SELECT * FROM [$(TableName)]					
---------------------------------------------------------------------------------------
-*/
-
+﻿if @Version = 0
+begin
 SET IDENTITY_INSERT [dbo].[Books] ON 
 
 INSERT [dbo].[Books] ([Id], [Name], [Author], [Price]) VALUES (1, N'Война и мир', N'Л. Толстой', 220)
@@ -90,3 +80,5 @@ INSERT [dbo].[CourseStudent] ([CourseId], [StudentId]) VALUES (2, 4)
 INSERT [dbo].[CourseStudent] ([CourseId], [StudentId]) VALUES (3, 4)
 
 INSERT [dbo].[DatabaseVersion]([Version]) VALUES (1)
+
+end

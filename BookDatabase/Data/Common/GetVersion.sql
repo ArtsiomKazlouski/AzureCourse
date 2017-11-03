@@ -9,5 +9,3 @@ IF EXISTS (SELECT 1
    select @Version = ( select MAX(Version) as currentVersion from dbo.DatabaseVersion) ELSE set @Version = 0 ;
 
 If @Version is null set @Version = 0;
-
---:setvar Version @Version
