@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.IO;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using BookStore.Models;
+using Serilog;
 
 namespace BookStore
 {
@@ -24,6 +26,12 @@ namespace BookStore
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+		    var tableConnectionString = ConfigurationManager.ConnectionStrings["AzureTableConnection"].ToString();
+
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.AzureTableStorage(tableConnectionString, storageTableName: "CriticalErrors")
+                .CreateLogger();
 		}
 	}
 }

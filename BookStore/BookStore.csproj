@@ -188,11 +188,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ExceptionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaginationController.cs" />
     <Compile Include="Controllers\SoccerController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
-    <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
+    <Compile Include="ErrorHandler\ErrorHandlerAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -281,7 +282,9 @@
     <Content Include="Views\Soccer\Filtes.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Exception\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
