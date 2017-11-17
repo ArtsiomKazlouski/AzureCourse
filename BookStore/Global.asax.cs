@@ -11,6 +11,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using BookStore.Models;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.File;
 using Serilog;
 
 namespace BookStore
@@ -27,11 +29,41 @@ namespace BookStore
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-		    var tableConnectionString = ConfigurationManager.ConnectionStrings["AzureTableConnection"].ToString();
+		    var storageConnection = ConfigurationManager.ConnectionStrings["AzureStorageConnection"].ToString();
 
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.AzureTableStorage(tableConnectionString, storageTableName: "CriticalErrors")
+                .WriteTo.AzureTableStorage(storageConnection, storageTableName: "CriticalErrors")
                 .CreateLogger();
-		}
+
+		    var storageAccount = CloudStorageAccount.Parse(storageConnection);
+		    var fileClient = storageAccount.CreateCloudFileClient();
+		    var share = fileClient.GetShareReference("logappstartsshare");
+		    share.CreateIfNotExists();
+
+		    // Get a reference to the root directory for the share.
+		    CloudFileDirectory rootDir = share.GetRootDirectoryReference();
+
+		    // Get a reference to the directory we created previously.
+		    CloudFileDirectory sampleDir = rootDir.GetDirectoryReference("CustomLogs");
+		    sampleDir.CreateIfNotExists();
+		    // Ensure that the directory exists.
+		    if (sampleDir.Exists())
+		    {
+		        var dateString = (DateTime.Now.ToString("s")).Replace(':', '-');
+
+                // Get a reference to the file we created previously.
+                CloudFile file = sampleDir.GetFileReference($"Start-{dateString}.txt");
+		        try
+		        {
+                    file.Create(555);
+		            file.UploadText($"{Environment.MachineName} - {dateString}");
+		        }
+		        catch (Exception ex)
+		        {
+		            var s = ex.Message;
+		            throw;
+		        }
+		    }
+        }
 	}
 }
