@@ -4,8 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 using System.Web.Mvc;
 using BookStore.Models.Pagination;
+using Swashbuckle.Swagger;
+using Swashbuckle.Swagger.Annotations;
 
 namespace BookStore.Controllers
 {
@@ -32,8 +35,14 @@ namespace BookStore.Controllers
                 new Phone {Id = 10, Model = "Samsung Galaxy II", Producer = "Samsung"}
             };
         }
-        
-        // GET api/<controller>
+
+        /// <summary>
+        /// Test request
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns>test results</returns>
+        [SwaggerResponseContentType(responseType:"text/plain", Exclusive=true)]
+        [SwaggerResponse(HttpStatusCode.InternalServerError,"Bad Data")]
         public IndexViewModel Get(int page = 1)
         {
             int pageSize = 3; // количество объектов на страницу
@@ -41,6 +50,47 @@ namespace BookStore.Controllers
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = phones.Count };
             IndexViewModel ivm = new IndexViewModel { PageInfo = pageInfo, Phones = phonesPerPages };
             return ivm;
+        }
+    }
+
+    /// <summary>
+    /// SwaggerResponseContentTypeAttribute
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Method)]
+    public sealed class SwaggerResponseContentTypeAttribute : Attribute
+    {
+        /// <summary>
+        /// SwaggerResponseContentTypeAttribute
+        /// </summary>
+        /// <param name="responseType"></param>
+        public SwaggerResponseContentTypeAttribute(string responseType)
+        {
+            ResponseType = responseType;
+        }
+        /// <summary>
+        /// Response Content Type
+        /// </summary>
+        public string ResponseType { get; private set; }
+
+        /// <summary>
+        /// Remove all other Response Content Types
+        /// </summary>
+        public bool Exclusive { get; set; }
+    }
+
+    public class ResponseContentTypeOperationFilter : IOperationFilter
+    {
+        public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
+        {
+            var requestAttributes = apiDescription.GetControllerAndActionAttributes<SwaggerResponseContentTypeAttribute>().FirstOrDefault();
+
+            if (requestAttributes != null)
+            {
+                if (requestAttributes.Exclusive)
+                    operation.produces.Clear();
+
+                operation.produces.Add(requestAttributes.ResponseType);
+            }
         }
     }
 }

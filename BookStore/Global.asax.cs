@@ -10,6 +10,9 @@ using Serilog;
 
 namespace BookStore
 {
+    /// <summary>
+    /// Application
+    /// </summary>
     public class MvcApplication : System.Web.HttpApplication
 	{
 		protected void Application_Start()
