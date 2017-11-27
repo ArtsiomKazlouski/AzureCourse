@@ -1,4 +1,4 @@
-﻿@model BookStore.Models.Pagination.IndexViewModel
+﻿
 @using BookStore.Helpers
 @{
     ViewBag.Title = "Home Page";
@@ -12,24 +12,24 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Phones)
+        @*@foreach (var item in Model.Phones)
         {
             <tr>
                 <td>@item.Model</td>
                 <td>@item.Producer</td>
             </tr>
-        }
+        }*@
     </tbody>
 
 </table>
 <br />
 <div class="btn-group">
-    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+    @*@Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))*@
 </div>
 
 @section Script{
     <script type="text/javascript">
-        document.ready(() => {
+        $.ready(() => {
             appInsights.trackEvent("Pagination view ready");
         });
     </script>

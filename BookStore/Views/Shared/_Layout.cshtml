@@ -77,7 +77,8 @@
     }
 </footer>
 </body>
-
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/modernizr")
 @if (IsSectionDefined("Script"))
 {
     @RenderSection("Script")
