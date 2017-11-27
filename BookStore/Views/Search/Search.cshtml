@@ -1,0 +1,44 @@
+﻿@using BookStore.Helpers
+@model BookStore.Models.BooksAndPlayersSearchResults
+@{
+    ViewBag.Title = "SearchResult";
+}
+
+<h3>Результат поиска Azure Search</h3>
+
+<table class="table table-hover table-bordered table-responsive">
+
+    <thead>
+    <tr>
+        <th>Book name</th>
+        <th>Author</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.BookResults)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Author</td>
+        </tr>
+    }
+    </tbody>
+    
+    <thead>
+        <tr>
+            <th>Player name</th>
+            <th>Player position</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PlayerResults)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Position</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<br />
