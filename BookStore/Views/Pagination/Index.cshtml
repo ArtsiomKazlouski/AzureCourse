@@ -11,7 +11,7 @@
             <th>Производитель</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="tblResult">
         @*@foreach (var item in Model.Phones)
         {
             <tr>
@@ -23,14 +23,45 @@
 
 </table>
 <br />
-<div class="btn-group">
-    @*@Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))*@
+<div class="btn-group" id="paginationContainer">
+    
 </div>
 
 @section Script{
     <script type="text/javascript">
-        $.ready(() => {
-            appInsights.trackEvent("Pagination view ready");
+        $(document).ready(function () {
+            Display(1);
         });
+
+        function Display(page) {  
+            $.get("/api/Values", { page: page }, function (response) {
+                appInsights.trackEvent("Pagination view data consumed");
+                
+                if (response != null) {  
+                    $("#tblResult").empty();
+                    $("#paginationContainer").empty();
+
+                    var datacontent = "";
+                    //appending the returned value  
+                    for (var i = 0; i < response.Phones.length; i++) {            //response.user is one of the returned value from  method       
+                        datacontent += "<tr><td>" + response.Phones[i].Model + "</td><td>" + response.Phones[i].Producer + "</td></tr>";  
+                    }  
+                    $("#tblResult").append(datacontent);  
+
+                    appInsights.trackEvent("Pagination view data rendered");
+
+
+                    for (var i = 1; i <= response.PageInfo.TotalPages; i++) {
+                        var selectedClass = "";
+                        if (i === page) {
+                            selectedClass = " selected btn-primary";
+                        }
+                        var btn = "<a href='#' class='btn btn-default"+selectedClass+"' onClick='Display(" + i + ")'>" + i + "<a>";
+                        $("#paginationContainer").append(btn);
+                    }
+                }
+            });  
+        }
+
     </script>
 }
