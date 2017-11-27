@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Mvc;
 using BookStore.Models.Pagination;
+using Microsoft.ApplicationInsights;
 using Swashbuckle.Swagger;
 using Swashbuckle.Swagger.Annotations;
 
@@ -45,6 +46,9 @@ namespace BookStore.Controllers
         [SwaggerResponse(HttpStatusCode.InternalServerError,"Bad Data")]
         public IndexViewModel Get(int page = 1)
         {
+            var cli = new TelemetryClient();
+            cli.TrackEvent("get value from values",new Dictionary<string, string>(){{ "page", $"{page}" } });
+
             int pageSize = 3; // количество объектов на страницу
             IEnumerable<Phone> phonesPerPages = phones.Skip((page - 1) * pageSize).Take(pageSize);
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = phones.Count };

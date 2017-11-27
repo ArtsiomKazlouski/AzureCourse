@@ -26,3 +26,11 @@
 <div class="btn-group">
     @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
 </div>
+
+@section Script{
+    <script type="text/javascript">
+        document.ready(() => {
+            appInsights.trackEvent("Pagination view ready");
+        });
+    </script>
+}
