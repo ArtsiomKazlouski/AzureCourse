@@ -33,7 +33,7 @@ namespace BookStore.Controllers
         // GET: Search
         public ActionResult Search(string term)
         {
-
+            
             var cached = _cache.StringGet(term);
             if (cached.HasValue)
             {
@@ -41,7 +41,7 @@ namespace BookStore.Controllers
                 return View(cachedObject);
             }
 
-            var query = $"name={term}&$top = 5";
+            var query = $"name={term}&$top = 5"; 
 
 
             var players = _playerClient.Documents.Search<Player>(query);
