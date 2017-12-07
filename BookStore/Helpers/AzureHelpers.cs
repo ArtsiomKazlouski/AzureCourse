@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using Microsoft.Azure.Search;
+using StackExchange.Redis;
 
 namespace BookStore.Helpers
 {
@@ -21,6 +22,13 @@ namespace BookStore.Helpers
 
             SearchServiceClient serviceClient = new SearchServiceClient(searchServiceName, new SearchCredentials(adminApiKey));
             return serviceClient;
+        }
+
+        public static ConnectionMultiplexer CreateRedisConnection()
+        {
+            var redisConnection = ConfigurationManager.ConnectionStrings["redis"].ConnectionString;
+
+            return ConnectionMultiplexer.Connect(redisConnection);
         }
     }
 }

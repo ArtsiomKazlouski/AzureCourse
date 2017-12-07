@@ -8,6 +8,7 @@ using BookStore.Models;
 using Microsoft.Azure.Search;
 using Microsoft.Azure.Search.Models;
 using Newtonsoft.Json;
+using StackExchange.Redis;
 
 namespace BookStore.Controllers
 {
@@ -15,6 +16,7 @@ namespace BookStore.Controllers
     {
         private readonly SearchIndexClient _playerClient;
         private readonly SearchIndexClient _booksClient;
+        private IDatabase _cache;
 
         public SearchController()
         {
@@ -22,11 +24,23 @@ namespace BookStore.Controllers
             
             _playerClient = indexClient.Indexes.GetClient(AzureHelpers.PlayersIndexName);
             _booksClient = indexClient.Indexes.GetClient(AzureHelpers.BooksIndexName);
+
+            var redisConnection = AzureHelpers.CreateRedisConnection();
+            _cache = redisConnection.GetDatabase();
+
         }
 
         // GET: Search
         public ActionResult Search(string term)
         {
+
+            var cached = _cache.StringGet(term);
+            if (cached.HasValue)
+            {
+                var cachedObject = JsonConvert.DeserializeObject<BooksAndPlayersSearchResults>(cached.ToString());
+                return View(cachedObject);
+            }
+
             var query = $"name={term}&$top = 5";
 
 
@@ -38,6 +52,8 @@ namespace BookStore.Controllers
                 PlayerResults = players.Results.Select(t=>t.Document),
                 BookResults = books.Results.Select(t=>t.Document),
             };
+
+            _cache.StringSet(term, JsonConvert.SerializeObject(searchResult), TimeSpan.FromSeconds(20));
 
             return View(searchResult);
         }
