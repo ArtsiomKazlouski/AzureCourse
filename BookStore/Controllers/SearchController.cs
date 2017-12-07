@@ -31,6 +31,7 @@ namespace BookStore.Controllers
         }
 
         // GET: Search
+        [HttpGet]
         public ActionResult Search(string term)
         {
             
@@ -44,12 +45,12 @@ namespace BookStore.Controllers
             var query = $"name={term}&$top = 5"; 
 
 
-            var players = _playerClient.Documents.Search<Player>(query);
+            //var players = _playerClient.Documents.Search<Player>(query);
             var books = _booksClient.Documents.Search<Book>(query);
 
             var searchResult = new BooksAndPlayersSearchResults()
             {
-                PlayerResults = players.Results.Select(t=>t.Document),
+                //PlayerResults = players.Results.Select(t=>t.Document),
                 BookResults = books.Results.Select(t=>t.Document),
             };
 
