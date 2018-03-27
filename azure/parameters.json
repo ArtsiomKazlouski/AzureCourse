@@ -2,16 +2,97 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "serverfarms_west_europe_free_name": {
+        "serverfarms_free_name": {
             "value": null
         },
-        "sites_book_store_west_europe_name": {
+        "servers_book_store_name": {
+            "value": null
+        },
+        "sites_book_store_paid_name": {
+            "value": null
+        },
+        "Redis_book_store_redis_name": {
+            "value": null
+        },
+        "searchServices_book_search_name": {
+            "value": null
+        },
+        "storageAccounts_globallogs_name": {
             "value": null
         },
         "config_web_name": {
             "value": null
         },
-        "hostNameBindings_book_store_west_europe.azurewebsites.net_name": {
+        "components_globalappinsights_name": {
+            "value": null
+        },
+        "storageAccounts_storagebookstore_name": {
+            "value": null
+        },
+        "firewallRules_all_name": {
+            "value": null
+        },
+        "keys_ServiceManaged_name": {
+            "value": null
+        },
+        "databases_book_store_name": {
+            "value": null
+        },
+        "auditingPolicies_Default_name": {
+            "value": null
+        },
+        "encryptionProtector_current_name": {
+            "value": null
+        },
+        "deployments_391512645201387_name": {
+            "value": null
+        },
+        "deployments_381512639763353_name": {
+            "value": null
+        },
+        "deployments_371512631586625_name": {
+            "value": null
+        },
+        "deployments_361512631529200_name": {
+            "value": null
+        },
+        "deployments_351512631365187_name": {
+            "value": null
+        },
+        "alertrules_Failure_Anomalies___globalappinsights_name": {
+            "value": null
+        },
+        "firewallRules_AllowAllWindowsAzureIps_name": {
+            "value": null
+        },
+        "advisors_DropIndex_name": {
+            "value": null
+        },
+        "advisors_CreateIndex_name": {
+            "value": null
+        },
+        "backupLongTermRetentionVaults_RegisteredVault_name": {
+            "value": null
+        },
+        "auditingPolicies_Default_name_1": {
+            "value": null
+        },
+        "geoBackupPolicies_Default_name": {
+            "value": null
+        },
+        "advisors_ForceLastGoodPlan_name": {
+            "value": null
+        },
+        "advisors_DbParameterization_name": {
+            "value": null
+        },
+        "hostNameBindings_book_store_paid.azurewebsites.net_name": {
+            "value": null
+        },
+        "transparentDataEncryption_current_name": {
+            "value": null
+        },
+        "backupLongTermRetentionPolicies_Default_name": {
             "value": null
         }
     }

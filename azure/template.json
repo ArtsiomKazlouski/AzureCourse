@@ -2,27 +2,314 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "serverfarms_west_europe_free_name": {
-            "defaultValue": "west-europe-free",
+        "serverfarms_free_name": {
+            "defaultValue": "free",
             "type": "String"
         },
-        "sites_book_store_west_europe_name": {
-            "defaultValue": "book-store-west-europe",
+        "servers_book_store_name": {
+            "defaultValue": "book-store",
+            "type": "String"
+        },
+        "sites_book_store_paid_name": {
+            "defaultValue": "book-store-paid",
+            "type": "String"
+        },
+        "Redis_book_store_redis_name": {
+            "defaultValue": "book-store-redis",
+            "type": "String"
+        },
+        "searchServices_book_search_name": {
+            "defaultValue": "book-search",
+            "type": "String"
+        },
+        "storageAccounts_globallogs_name": {
+            "defaultValue": "globallogs",
             "type": "String"
         },
         "config_web_name": {
             "defaultValue": "web",
             "type": "String"
         },
-        "hostNameBindings_book_store_west_europe.azurewebsites.net_name": {
-            "defaultValue": "book-store-west-europe.azurewebsites.net",
+        "components_globalappinsights_name": {
+            "defaultValue": "globalappinsights",
+            "type": "String"
+        },
+        "storageAccounts_storagebookstore_name": {
+            "defaultValue": "storagebookstore",
+            "type": "String"
+        },
+        "firewallRules_all_name": {
+            "defaultValue": "all",
+            "type": "String"
+        },
+        "keys_ServiceManaged_name": {
+            "defaultValue": "ServiceManaged",
+            "type": "String"
+        },
+        "databases_book_store_name": {
+            "defaultValue": "book-store",
+            "type": "String"
+        },
+        "auditingPolicies_Default_name": {
+            "defaultValue": "Default",
+            "type": "String"
+        },
+        "encryptionProtector_current_name": {
+            "defaultValue": "current",
+            "type": "String"
+        },
+        "deployments_391512645201387_name": {
+            "defaultValue": "391512645201387",
+            "type": "String"
+        },
+        "deployments_381512639763353_name": {
+            "defaultValue": "381512639763353",
+            "type": "String"
+        },
+        "deployments_371512631586625_name": {
+            "defaultValue": "371512631586625",
+            "type": "String"
+        },
+        "deployments_361512631529200_name": {
+            "defaultValue": "361512631529200",
+            "type": "String"
+        },
+        "deployments_351512631365187_name": {
+            "defaultValue": "351512631365187",
+            "type": "String"
+        },
+        "alertrules_Failure_Anomalies___globalappinsights_name": {
+            "defaultValue": "Failure Anomalies - globalappinsights",
+            "type": "String"
+        },
+        "firewallRules_AllowAllWindowsAzureIps_name": {
+            "defaultValue": "AllowAllWindowsAzureIps",
+            "type": "String"
+        },
+        "advisors_DropIndex_name": {
+            "defaultValue": "DropIndex",
+            "type": "String"
+        },
+        "advisors_CreateIndex_name": {
+            "defaultValue": "CreateIndex",
+            "type": "String"
+        },
+        "backupLongTermRetentionVaults_RegisteredVault_name": {
+            "defaultValue": "RegisteredVault",
+            "type": "String"
+        },
+        "auditingPolicies_Default_name_1": {
+            "defaultValue": "Default",
+            "type": "String"
+        },
+        "geoBackupPolicies_Default_name": {
+            "defaultValue": "Default",
+            "type": "String"
+        },
+        "advisors_ForceLastGoodPlan_name": {
+            "defaultValue": "ForceLastGoodPlan",
+            "type": "String"
+        },
+        "advisors_DbParameterization_name": {
+            "defaultValue": "DbParameterization",
+            "type": "String"
+        },
+        "hostNameBindings_book_store_paid.azurewebsites.net_name": {
+            "defaultValue": "book-store-paid.azurewebsites.net",
+            "type": "String"
+        },
+        "transparentDataEncryption_current_name": {
+            "defaultValue": "current",
+            "type": "String"
+        },
+        "backupLongTermRetentionPolicies_Default_name": {
+            "defaultValue": "Default",
             "type": "String"
         }
     },
     "variables": {},
     "resources": [
         {
-            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Web/serverfarms/west-europe-free'.",
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Cache/Redis/book-store-redis'.",
+            "type": "Microsoft.Cache/Redis",
+            "name": "[parameters('Redis_book_store_redis_name')]",
+            "apiVersion": "2017-10-01",
+            "location": "West Europe",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "sku": {
+                    "name": "Basic",
+                    "family": "C",
+                    "capacity": 0
+                },
+                "enableNonSslPort": false,
+                "redisConfiguration": {
+                    "maxclients": "256",
+                    "maxmemory-reserved": "2",
+                    "maxfragmentationmemory-reserved": "12",
+                    "maxmemory-delta": "2"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/microsoft.insights/alertrules/Failure Anomalies - globalappinsights'.",
+            "type": "microsoft.insights/alertrules",
+            "name": "[parameters('alertrules_Failure_Anomalies___globalappinsights_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "West Europe",
+            "tags": {
+                "hidden-link:/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourcegroups/azure-course/providers/microsoft.insights/components/globalappinsights": "Resource"
+            },
+            "scale": null,
+            "properties": {
+                "name": "[parameters('alertrules_Failure_Anomalies___globalappinsights_name')]",
+                "description": "",
+                "isEnabled": true,
+                "condition": {
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
+                    "dataSource": {
+                        "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
+                        "resourceUri": "[resourceId('microsoft.insights/components', parameters('components_globalappinsights_name'))]",
+                        "metricNamespace": null,
+                        "metricName": "advanced::A3108E3D-5E26-44CF-B232-783F5E20EF10::ewAiAEgAeQBwAGUAcgBpAG8AbgBBAHAAcABsAGkAYwBhAHQAaQBvAG4AUwBpAGQAIgA6AG4AdQBsAGwALAAiAEgAeQBwAGUAcgBpAG8AbgBTAHUAYgBqAGUAYwB0AFMAaQBkACIAOgBuAHUAbABsACwAIgBIAHkAcABlAHIAaQBvAG4ATwBiAHMAZQByAHYAZQByAFMAaQBkACIAOgBuAHUAbABsACwAIgBDAHUAcwB0AG8AbQBlAHIAQQBjAGMAbwB1AG4AdABJAGQAIgA6ACIAMAAwADAAMAAwADAAMAAwAC0AMAAwADAAMAAtADAAMAAwADAALQAwADAAMAAwAC0AMAAwADAAMAAwADAAMAAwADAAMAAwADAAIgAsACIAQQBwAHAAbABpAGMAYQB0AGkAbwBuAE4AYQBtAGUAIgA6AG4AdQBsAGwALAAiAEEAcABwAGwAaQBjAGEAdABpAG8AbgBJAGQAIgA6AG4AdQBsAGwALAAiAFAAcgBvAGYAaQBsAGUASQBkACIAOgAwACwAIgBXAGkAbgBkAG8AdwBTAGkAegBlAEkAbgBNAGkAbgB1AHQAZQBzACIAOgA2ADAALAAiAE0AZQB0AHIAaQBjAE4AYQBtAGUAIgA6ACIAIgAsACIAVABoAHIAZQBzAGgAbwBsAGQAIgA6ADIALgAwACwAIgBBAGwAZQByAHQAVABlAG0AcABsAGEAdABlAEkAZAAiADoAIgAiACwAIgBSAHUAbABlAEkAZAAiADoAIgAiACwAIgBSAHUAbABlAE4AYQBtAGUAIgA6ACIAIgAsACIAUgB1AGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AIgA6ACIAIgAsACIAUgBlAHMAbwB1AHIAYwBlAEkAZAAiADoAbgB1AGwAbAAsACIAUwB1AGIAcwBjAHIAaQBwAHQAaQBvAG4ASQBkACIAOgBuAHUAbABsACwAIgBBAGcAZwByAGUAZwBhAHQAZQBGAHUAbgBjAHQAaQBvAG4AIgA6ACIAIgAsACIAQwBvAG0AcABhAHIAaQBzAG8AbgBPAHAAZQByAGEAdABvAHIAIgA6ACIAewBcACIAQgBhAHMAZQBsAGkAbgBlAFQAaQBtAGUAcwBwAGEAbgBcACIAOgBcACIAMAAwADoANAAwADoAMAAwAFwAIgAsAFwAIgBJAG4AcwBpAGcAaAB0AHMAUwBlAHIAdgBpAGMAZQBMAGEAZwBcACIAOgBcACIAMAAwADoAMAAwADoAMAAwAFwAIgAsAFwAIgBCAHUAZgBmAGUAcgBUAGkAbQBlAFwAIgA6AFwAIgAwADAAOgAwADEAOgAwADAAXAAiACwAXAAiAEIAbABvAGIAUwB0AG8AcgBhAGcAZQBMAG8AZwBnAGkAbgBnAEUAbgBhAGIAbABlAGQAXAAiADoAZgBhAGwAcwBlACwAXAAiAFUAcwBlAHIAUwB1AHAAcAByAGUAcwBzAGkAbwBuAHMAXAAiADoAbgB1AGwAbAAsAFwAIgBQAHIAbwBmAGkAbABlAEkAZABcACIAOgAwACwAXAAiAEUAbQBhAGkAbABUAHkAcABlAFwAIgA6ADAALABcACIAUgBkAGQARgBhAGkAbAB1AHIAZQBzAFMAcABpAGsAZQBUAGgAcgBlAHMAaABvAGwAZABcACIAOgAzAC4AMAAsAFwAIgBSAGEAdwBQAHIAbwBhAGMAdABpAHYAZQBSAHUAbABlAEMAbwBuAGYAaQBnAFwAIgA6AG4AdQBsAGwAfQAiACwAIgBFAG4AYQBiAGwAZQBTAGUAbgBkAEUAbQBhAGkAbABUAG8AQwB1AHMAdABvAG0AIgA6AGYAYQBsAHMAZQAsACIAQwB1AHMAdABvAG0ARQBtAGEAaQBsAHMARQBuAGMAbwBkAGUAZAAiADoAIgAiACwAIgBFAG4AYQBiAGwAZQBTAGUAbgBkAEUAbQBhAGkAbABUAG8ATwB3AG4AZQByAHMAIgA6AGYAYQBsAHMAZQB9AA=="
+                    },
+                    "operator": "GreaterThan",
+                    "threshold": 2,
+                    "windowSize": "PT1H"
+                },
+                "action": {
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
+                    "sendToServiceOwners": true,
+                    "customEmails": []
+                }
+            },
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_globalappinsights_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/microsoft.insights/components/globalappinsights'.",
+            "type": "microsoft.insights/components",
+            "kind": "web",
+            "name": "[parameters('components_globalappinsights_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "westeurope",
+            "tags": {
+                "hidden-link:/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Web/sites/book-store-west-europe": "Resource",
+                "hidden-link:/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Web/sites/book-store-west-europe-paid": "Resource",
+                "hidden-link:/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Web/sites/book-store-west-europe-paid/slots/stagging": "Resource"
+            },
+            "scale": null,
+            "properties": {
+                "ApplicationId": "[parameters('components_globalappinsights_name')]"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Search/searchServices/book-search'.",
+            "type": "Microsoft.Search/searchServices",
+            "sku": {
+                "name": "free"
+            },
+            "name": "[parameters('searchServices_book_search_name')]",
+            "apiVersion": "2015-08-19",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "replicaCount": 1,
+                "partitionCount": 1,
+                "hostingMode": "Default"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store'.",
+            "type": "Microsoft.Sql/servers",
+            "kind": "v12.0",
+            "name": "[parameters('servers_book_store_name')]",
+            "apiVersion": "2015-05-01-preview",
+            "location": "westeurope",
+            "scale": null,
+            "properties": {
+                "administratorLogin": "artuom",
+                "version": "12.0"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Storage/storageAccounts/globallogs'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_globallogs_name')]",
+            "apiVersion": "2017-10-01",
+            "location": "westeurope",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Storage/storageAccounts/storagebookstore'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_storagebookstore_name')]",
+            "apiVersion": "2017-10-01",
+            "location": "westeurope",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Web/serverfarms/free'.",
             "type": "Microsoft.Web/serverfarms",
             "sku": {
                 "name": "F1",
@@ -32,12 +319,12 @@
                 "capacity": 0
             },
             "kind": "app",
-            "name": "[parameters('serverfarms_west_europe_free_name')]",
+            "name": "[parameters('serverfarms_free_name')]",
             "apiVersion": "2016-09-01",
             "location": "West Europe",
             "scale": null,
             "properties": {
-                "name": "[parameters('serverfarms_west_europe_free_name')]",
+                "name": "[parameters('serverfarms_free_name')]",
                 "workerTierName": null,
                 "adminSiteName": null,
                 "hostingEnvironmentProfile": null,
@@ -49,21 +336,21 @@
             "dependsOn": []
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Web/sites/book-store-west-europe'.",
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Web/sites/book-store-paid'.",
             "type": "Microsoft.Web/sites",
             "kind": "app",
-            "name": "[parameters('sites_book_store_west_europe_name')]",
+            "name": "[parameters('sites_book_store_paid_name')]",
             "apiVersion": "2016-08-01",
             "location": "West Europe",
             "tags": {
-                "hidden-related:/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourcegroups/azure-course/providers/Microsoft.Web/serverfarms/west-europe-free": "empty"
+                "hidden-related:/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourcegroups/azure-course/providers/Microsoft.Web/serverfarms/free": "empty"
             },
             "scale": null,
             "properties": {
                 "enabled": true,
                 "hostNameSslStates": [
                     {
-                        "name": "[concat(parameters('sites_book_store_west_europe_name'),'.azurewebsites.net')]",
+                        "name": "[concat(parameters('sites_book_store_paid_name'),'.azurewebsites.net')]",
                         "sslState": "Disabled",
                         "virtualIP": null,
                         "thumbprint": null,
@@ -71,7 +358,7 @@
                         "hostType": "Standard"
                     },
                     {
-                        "name": "[concat(parameters('sites_book_store_west_europe_name'),'.scm.azurewebsites.net')]",
+                        "name": "[concat(parameters('sites_book_store_paid_name'),'.scm.azurewebsites.net')]",
                         "sslState": "Disabled",
                         "virtualIP": null,
                         "thumbprint": null,
@@ -79,7 +366,7 @@
                         "hostType": "Repository"
                     }
                 ],
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_west_europe_free_name'))]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_free_name'))]",
                 "reserved": false,
                 "siteConfig": null,
                 "scmSiteAlsoStopped": false,
@@ -92,17 +379,277 @@
                 "cloningInfo": null
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_west_europe_free_name'))]"
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_free_name'))]"
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Web/sites/book-store-west-europe/config/web'.",
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/auditingPolicies/Default'.",
+            "type": "Microsoft.Sql/servers/auditingPolicies",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('auditingPolicies_Default_name'))]",
+            "apiVersion": "2014-04-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "auditingState": "New",
+                "eventTypesToAudit": "PlainSQL_Success,PlainSQL_Failure,ParameterizedSQL_Success,ParameterizedSQL_Failure,StoredProcedure_Success,StoredProcedure_Failure,Login_Success,Login_Failure,TransactionManagement_Success,TransactionManagement_Failure",
+                "storageAccountName": null,
+                "storageAccountKey": null,
+                "storageAccountSecondaryKey": null,
+                "storageTableEndpoint": null,
+                "storageAccountResourceGroupName": null,
+                "storageAccountSubscriptionId": null,
+                "fullAuditLogsTableName": "SQLDBAuditLogsBookstore",
+                "auditLogsTableName": "Bookstore",
+                "retentionDays": "0"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/backupLongTermRetentionVaults/RegisteredVault'.",
+            "type": "Microsoft.Sql/servers/backupLongTermRetentionVaults",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('backupLongTermRetentionVaults_RegisteredVault_name'))]",
+            "apiVersion": "2014-04-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "recoveryServicesVaultResourceId": null
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/databases/book-store'.",
+            "type": "Microsoft.Sql/servers/databases",
+            "kind": "v12.0,user",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('databases_book_store_name'))]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "databaseId": "08ba2675-e54c-4664-88ad-9e4b953af3be",
+                "edition": "Basic",
+                "status": "Online",
+                "serviceLevelObjective": "Basic",
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "maxSizeBytes": "2147483648",
+                "creationDate": "2017-11-01T07:04:27.663Z",
+                "currentServiceObjectiveId": "dd6d99bb-f193-4ec1-86f2-43d3bccbc49c",
+                "requestedServiceObjectiveId": "dd6d99bb-f193-4ec1-86f2-43d3bccbc49c",
+                "requestedServiceObjectiveName": "Basic",
+                "sampleName": null,
+                "defaultSecondaryLocation": "North Europe",
+                "earliestRestoreDate": "2018-03-20T00:00:00Z",
+                "elasticPoolName": null,
+                "containmentState": 2,
+                "readScale": "Disabled",
+                "failoverGroupId": null,
+                "zoneRedundant": false,
+                "isUpgradeRequested": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/firewallRules/all'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('firewallRules_all_name'))]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "255.255.255.255"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/firewallRules/AllowAllWindowsAzureIps'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('firewallRules_AllowAllWindowsAzureIps_name'))]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "0.0.0.0"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/encryptionProtector/current'.",
+            "type": "Microsoft.Sql/servers/encryptionProtector",
+            "kind": "servicemanaged",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('encryptionProtector_current_name'))]",
+            "apiVersion": "2015-05-01-preview",
+            "scale": null,
+            "properties": {
+                "serverKeyName": "ServiceManaged",
+                "serverKeyType": "ServiceManaged"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/keys/ServiceManaged'.",
+            "type": "Microsoft.Sql/servers/keys",
+            "kind": "servicemanaged",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('keys_ServiceManaged_name'))]",
+            "apiVersion": "2015-05-01-preview",
+            "scale": null,
+            "properties": {
+                "serverKeyType": "[parameters('keys_ServiceManaged_name')]"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/databases/book-store/advisors/CreateIndex'.",
+            "type": "Microsoft.Sql/servers/databases/advisors",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('databases_book_store_name'), '/', parameters('advisors_CreateIndex_name'))]",
+            "apiVersion": "2014-04-01",
+            "scale": null,
+            "properties": {
+                "autoExecuteValue": "Disabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_book_store_name'), parameters('databases_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/databases/book-store/advisors/DropIndex'.",
+            "type": "Microsoft.Sql/servers/databases/advisors",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('databases_book_store_name'), '/', parameters('advisors_DropIndex_name'))]",
+            "apiVersion": "2014-04-01",
+            "scale": null,
+            "properties": {
+                "autoExecuteValue": "Disabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_book_store_name'), parameters('databases_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/databases/book-store/advisors/DbParameterization'.",
+            "type": "Microsoft.Sql/servers/databases/advisors",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('databases_book_store_name'), '/', parameters('advisors_DbParameterization_name'))]",
+            "apiVersion": "2014-04-01",
+            "scale": null,
+            "properties": {
+                "autoExecuteValue": "Disabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_book_store_name'), parameters('databases_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/databases/book-store/advisors/ForceLastGoodPlan'.",
+            "type": "Microsoft.Sql/servers/databases/advisors",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('databases_book_store_name'), '/', parameters('advisors_ForceLastGoodPlan_name'))]",
+            "apiVersion": "2014-04-01",
+            "scale": null,
+            "properties": {
+                "autoExecuteValue": "Disabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_book_store_name'), parameters('databases_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/databases/book-store/auditingPolicies/Default'.",
+            "type": "Microsoft.Sql/servers/databases/auditingPolicies",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('databases_book_store_name'), '/', parameters('auditingPolicies_Default_name_1'))]",
+            "apiVersion": "2014-04-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "auditingState": "New",
+                "eventTypesToAudit": "PlainSQL_Success,PlainSQL_Failure,ParameterizedSQL_Success,ParameterizedSQL_Failure,StoredProcedure_Success,StoredProcedure_Failure,Login_Success,Login_Failure,TransactionManagement_Success,TransactionManagement_Failure",
+                "storageAccountName": null,
+                "storageAccountKey": null,
+                "storageAccountSecondaryKey": null,
+                "storageTableEndpoint": null,
+                "storageAccountResourceGroupName": null,
+                "storageAccountSubscriptionId": null,
+                "useServerDefault": "Enabled",
+                "fullAuditLogsTableName": "SQLDBAuditLogsBookstoreBookstore",
+                "auditLogsTableName": "BookstoreBookstore",
+                "retentionDays": "0"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_book_store_name'), parameters('databases_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/databases/book-store/backupLongTermRetentionPolicies/Default'.",
+            "type": "Microsoft.Sql/servers/databases/backupLongTermRetentionPolicies",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('databases_book_store_name'), '/', parameters('backupLongTermRetentionPolicies_Default_name'))]",
+            "apiVersion": "2014-04-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "state": "Disabled",
+                "recoveryServicesBackupPolicyResourceId": null
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_book_store_name'), parameters('databases_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/databases/book-store/geoBackupPolicies/Default'.",
+            "type": "Microsoft.Sql/servers/databases/geoBackupPolicies",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('databases_book_store_name'), '/', parameters('geoBackupPolicies_Default_name'))]",
+            "apiVersion": "2014-04-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "state": "Enabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_book_store_name'), parameters('databases_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Sql/servers/book-store/databases/book-store/transparentDataEncryption/current'.",
+            "type": "Microsoft.Sql/servers/databases/transparentDataEncryption",
+            "name": "[concat(parameters('servers_book_store_name'), '/', parameters('databases_book_store_name'), '/', parameters('transparentDataEncryption_current_name'))]",
+            "apiVersion": "2014-04-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "status": "Enabled"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_book_store_name'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('servers_book_store_name'), parameters('databases_book_store_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Web/sites/book-store-paid/config/web'.",
             "type": "Microsoft.Web/sites/config",
-            "name": "[concat(parameters('sites_book_store_west_europe_name'), '/', parameters('config_web_name'))]",
+            "name": "[concat(parameters('sites_book_store_paid_name'), '/', parameters('config_web_name'))]",
             "apiVersion": "2016-08-01",
             "location": "West Europe",
             "tags": {
-                "hidden-related:/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourcegroups/azure-course/providers/Microsoft.Web/serverfarms/west-europe-free": "empty"
+                "hidden-related:/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourcegroups/azure-course/providers/Microsoft.Web/serverfarms/free": "empty"
             },
             "scale": null,
             "properties": {
@@ -125,11 +672,11 @@
                 "linuxFxVersion": "",
                 "requestTracingEnabled": false,
                 "remoteDebuggingEnabled": false,
-                "remoteDebuggingVersion": null,
+                "remoteDebuggingVersion": "VS2012",
                 "httpLoggingEnabled": false,
                 "logsDirectorySizeLimit": 35,
                 "detailedErrorLoggingEnabled": false,
-                "publishingUsername": "$book-store-west-europe",
+                "publishingUsername": "$book-store-paid",
                 "publishingPassword": null,
                 "appSettings": null,
                 "metadata": null,
@@ -137,7 +684,7 @@
                 "machineKey": null,
                 "handlerMappings": null,
                 "documentRoot": null,
-                "scmType": "None",
+                "scmType": "VSTSRM",
                 "use32BitWorkerProcess": true,
                 "webSocketsEnabled": false,
                 "alwaysOn": false,
@@ -200,26 +747,139 @@
                 "apiDefinition": null,
                 "autoSwapSlotName": null,
                 "localMySqlEnabled": false,
-                "ipSecurityRestrictions": null
+                "managedServiceIdentityId": null,
+                "ipSecurityRestrictions": null,
+                "http20Enabled": true,
+                "minTlsVersion": "1.0"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_book_store_west_europe_name'))]"
+                "[resourceId('Microsoft.Web/sites', parameters('sites_book_store_paid_name'))]"
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Web/sites/book-store-west-europe/hostNameBindings/book-store-west-europe.azurewebsites.net'.",
-            "type": "Microsoft.Web/sites/hostNameBindings",
-            "name": "[concat(parameters('sites_book_store_west_europe_name'), '/', parameters('hostNameBindings_book_store_west_europe.azurewebsites.net_name'))]",
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourcegroups/azure-course/providers/Microsoft.Web/sites/book-store-paid/deployments/391512645201387'.",
+            "type": "Microsoft.Web/sites/deployments",
+            "name": "[concat(parameters('sites_book_store_paid_name'), '/', parameters('deployments_391512645201387_name'))]",
             "apiVersion": "2016-08-01",
             "location": "West Europe",
             "scale": null,
             "properties": {
-                "siteName": "book-store-west-europe",
+                "id": "[parameters('deployments_391512645201387_name')]",
+                "status": 4,
+                "author_email": "",
+                "author": "Microsoft.VisualStudio.Services.TFS",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"Deployment\",\"commitId\":\"d47df09b12acc05e3c45a4817a5de6f60a20499d\",\"buildId\":\"115\",\"releaseId\":\"39\",\"buildNumber\":\"20171207.5\",\"releaseName\":\"Release-38\",\"repoProvider\":\"GitHub\",\"collectionUrl\":\"https://artsiom-kazlouski.visualstudio.com/\",\"teamProject\":\"e6175b47-09ba-4b9a-b661-c2849735ea79\",\"slotName\":\"Production\"}",
+                "start_time": "2017-12-07T11:13:22.1665149Z",
+                "end_time": "2017-12-07T11:13:22.1665149Z",
+                "active": true
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_book_store_paid_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourcegroups/azure-course/providers/Microsoft.Web/sites/book-store-paid/deployments/381512639763353'.",
+            "type": "Microsoft.Web/sites/deployments",
+            "name": "[concat(parameters('sites_book_store_paid_name'), '/', parameters('deployments_381512639763353_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "id": "[parameters('deployments_381512639763353_name')]",
+                "status": 4,
+                "author_email": "",
+                "author": "Microsoft.VisualStudio.Services.TFS",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"Deployment\",\"commitId\":\"c642ab0ff94442f44d8094ed965c087c8073843c\",\"buildId\":\"114\",\"releaseId\":\"38\",\"buildNumber\":\"20171207.4\",\"releaseName\":\"Release-37\",\"repoProvider\":\"GitHub\",\"collectionUrl\":\"https://artsiom-kazlouski.visualstudio.com/\",\"teamProject\":\"e6175b47-09ba-4b9a-b661-c2849735ea79\",\"slotName\":\"Production\"}",
+                "start_time": "2017-12-07T09:42:43.7645988Z",
+                "end_time": "2017-12-07T09:42:43.7645988Z",
+                "active": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_book_store_paid_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourcegroups/azure-course/providers/Microsoft.Web/sites/book-store-paid/deployments/371512631586625'.",
+            "type": "Microsoft.Web/sites/deployments",
+            "name": "[concat(parameters('sites_book_store_paid_name'), '/', parameters('deployments_371512631586625_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "id": "[parameters('deployments_371512631586625_name')]",
+                "status": 4,
+                "author_email": "",
+                "author": "Artsiom Kazlouski",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"Deployment\",\"commitId\":\"6585a27a2db86ea6fe083404e8c434d3876ece0f\",\"buildId\":\"113\",\"releaseId\":\"37\",\"buildNumber\":\"20171207.3\",\"releaseName\":\"Release-36\",\"repoProvider\":\"GitHub\",\"collectionUrl\":\"https://artsiom-kazlouski.visualstudio.com/\",\"teamProject\":\"e6175b47-09ba-4b9a-b661-c2849735ea79\",\"slotName\":\"Production\"}",
+                "start_time": "2017-12-07T07:26:27.2687569Z",
+                "end_time": "2017-12-07T07:26:27.2687569Z",
+                "active": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_book_store_paid_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourcegroups/azure-course/providers/Microsoft.Web/sites/book-store-paid/deployments/361512631529200'.",
+            "type": "Microsoft.Web/sites/deployments",
+            "name": "[concat(parameters('sites_book_store_paid_name'), '/', parameters('deployments_361512631529200_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "id": "[parameters('deployments_361512631529200_name')]",
+                "status": 4,
+                "author_email": "",
+                "author": "Microsoft.VisualStudio.Services.TFS",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"Deployment\",\"commitId\":\"6585a27a2db86ea6fe083404e8c434d3876ece0f\",\"buildId\":\"112\",\"releaseId\":\"36\",\"buildNumber\":\"20171207.2\",\"releaseName\":\"Release-35\",\"repoProvider\":\"GitHub\",\"collectionUrl\":\"https://artsiom-kazlouski.visualstudio.com/\",\"teamProject\":\"e6175b47-09ba-4b9a-b661-c2849735ea79\",\"slotName\":\"Production\"}",
+                "start_time": "2017-12-07T07:25:30.3582774Z",
+                "end_time": "2017-12-07T07:25:30.3582774Z",
+                "active": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_book_store_paid_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourcegroups/azure-course/providers/Microsoft.Web/sites/book-store-paid/deployments/351512631365187'.",
+            "type": "Microsoft.Web/sites/deployments",
+            "name": "[concat(parameters('sites_book_store_paid_name'), '/', parameters('deployments_351512631365187_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "id": "[parameters('deployments_351512631365187_name')]",
+                "status": 4,
+                "author_email": "",
+                "author": "Microsoft.VisualStudio.Services.TFS",
+                "deployer": "VSTS",
+                "message": "{\"type\":\"Deployment\",\"commitId\":\"8a0333e0ebd4d1569d91069c9ebf0898ef7da06c\",\"buildId\":\"111\",\"releaseId\":\"35\",\"buildNumber\":\"20171207.1\",\"releaseName\":\"Release-34\",\"repoProvider\":\"GitHub\",\"collectionUrl\":\"https://artsiom-kazlouski.visualstudio.com/\",\"teamProject\":\"e6175b47-09ba-4b9a-b661-c2849735ea79\",\"slotName\":\"Production\"}",
+                "start_time": "2017-12-07T07:22:46.3707903Z",
+                "end_time": "2017-12-07T07:22:46.3707903Z",
+                "active": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_book_store_paid_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/1817dfd7-1c83-4cd8-8485-c8e7d2eab969/resourceGroups/azure-course/providers/Microsoft.Web/sites/book-store-paid/hostNameBindings/book-store-paid.azurewebsites.net'.",
+            "type": "Microsoft.Web/sites/hostNameBindings",
+            "name": "[concat(parameters('sites_book_store_paid_name'), '/', parameters('hostNameBindings_book_store_paid.azurewebsites.net_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "siteName": "book-store-paid",
                 "domainId": null,
                 "hostNameType": "Verified"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_book_store_west_europe_name'))]"
+                "[resourceId('Microsoft.Web/sites', parameters('sites_book_store_paid_name'))]"
             ]
         }
     ]
